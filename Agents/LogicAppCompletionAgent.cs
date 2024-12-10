@@ -25,7 +25,8 @@ public class LogicAppCompletionAgent
             Arguments = new KernelArguments(
                 new OpenAIPromptExecutionSettings
                 {
-                    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+                    FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
+                    ResponseFormat = typeof(LogicAppResponse)
                 })
         };
     }

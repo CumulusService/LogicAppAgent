@@ -17,7 +17,7 @@ public class LogicAppPlugin
         _settings = settings;
         _httpClient = new HttpClient();
         _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-       /* if (!string.IsNullOrEmpty(settings.ApiKey))
+        /* if (!string.IsNullOrEmpty(settings.ApiKey))
         {
             _httpClient.DefaultRequestHeaders.Add("x-functions-key", settings.ApiKey);
         }*/
@@ -28,20 +28,20 @@ public class LogicAppPlugin
         [Description("Parameters to pass to the Logic App workflow")] string parameters)
     {
         var triggerUrl = _settings.LogicAppUrl;
-        
+
         var content = new StringContent(parameters, Encoding.UTF8, "application/json");
         var response = await _httpClient.PostAsync(triggerUrl, content);
-        
+
         response.EnsureSuccessStatusCode();
-        
+
         var jsonResponse = await response.Content.ReadAsStringAsync();
-        var logicAppResponse = JsonSerializer.Deserialize<LogicAppResponseBody>(jsonResponse);
-        
-        if (logicAppResponse == null || logicAppResponse.Outputs == null)
+        //var logicAppResponse = JsonSerializer.Deserialize<LogicAppResponseBody>(jsonResponse);
+
+        /*if (logicAppResponse == null || logicAppResponse.Body == null || logicAppResponse.Body.Outputs == null)
         {
             throw new InvalidOperationException("The response from the Logic App is null or invalid.");
-        }
-        
-        return JsonSerializer.Serialize(logicAppResponse.Outputs);
+        }*/
+
+        return jsonResponse;
     }
 }

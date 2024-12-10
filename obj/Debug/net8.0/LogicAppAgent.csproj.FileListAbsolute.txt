@@ -56,3 +56,4 @@ C:\Users\Administrator\LogicAppAgent\obj\Debug\net8.0\refint\LogicAppAgent.dll
 C:\Users\Administrator\LogicAppAgent\obj\Debug\net8.0\LogicAppAgent.pdb
 C:\Users\Administrator\LogicAppAgent\obj\Debug\net8.0\LogicAppAgent.genruntimeconfig.cache
 C:\Users\Administrator\LogicAppAgent\obj\Debug\net8.0\ref\LogicAppAgent.dll
+C:\Users\Administrator\LogicAppAgent\obj\Debug\net8.0\LogicAppAgent.sourcelink.json

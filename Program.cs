@@ -1,7 +1,6 @@
 ﻿using LogicAppAgent.Agents;
 using LogicAppAgent.Plugins;
 using Microsoft.SemanticKernel;
-
 namespace LogicAppAgent;
 
 public class Program
@@ -17,10 +16,13 @@ public class Program
 
         Console.WriteLine("Creating kernel...");
         var builder = Kernel.CreateBuilder();
-        builder.AddAzureOpenAIChatCompletion(
+        /*builder.AddAzureOpenAIChatCompletion(
             settings.AzureOpenAI.ChatModelDeployment,
             settings.AzureOpenAI.Endpoint,
-            settings.AzureOpenAI.ApiKey);
+            settings.AzureOpenAI.ApiKey);*/
+        builder.AddOpenAIChatCompletion(
+            modelId:settings.OpenAI.ChatModel,
+            apiKey:settings.OpenAI.ApiKey);     
 
         builder.Plugins.AddFromObject(logicAppPlugin, "LogicAppPlugin");
         var kernel = builder.Build();

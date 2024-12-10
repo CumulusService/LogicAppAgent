@@ -7,9 +7,11 @@ public class Settings
 {
     private readonly IConfigurationRoot configRoot;
     private AzureOpenAISettings? _azureOpenAI;
+    private OpenAISettings? _OpenAI;
     private LogicAppSettings? _logicApp;
 
     public AzureOpenAISettings AzureOpenAI => _azureOpenAI ??= GetSettings<AzureOpenAISettings>();
+    public OpenAISettings OpenAI => _OpenAI ??= GetSettings<OpenAISettings>();
     public LogicAppSettings LogicApp => _logicApp ??= GetSettings<LogicAppSettings>();
 
     public class AzureOpenAISettings
@@ -19,6 +21,15 @@ public class Settings
         public required string ApiKey { get; set; }
     }
 
+public class OpenAISettings
+
+{
+
+    public required string ChatModel { get; set; }
+
+    public required string ApiKey { get; set; }
+
+}
     public TSettings GetSettings<TSettings>() where TSettings : class =>
         this.configRoot.GetRequiredSection(typeof(TSettings).Name).Get<TSettings>() 
             ?? throw new InvalidOperationException($"Configuration section for {typeof(TSettings).Name} is missing or invalid");
